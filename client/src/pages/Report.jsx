@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import GoogleMap from '../components/GoogleMap'
+import Footer from '../components/Footer'
 
 function Report({ report, onBack, onRescan }) {
   const {
@@ -163,7 +164,8 @@ function Report({ report, onBack, onRescan }) {
   const activeContent = sections.find((section) => section.id === activeSection)?.content
 
   return (
-    <main className="report-content">
+    <>
+      <main className="report-content">
       <div className="report-top">
         <div>
           <p className="eyebrow">TenantShield Report</p>
@@ -202,7 +204,9 @@ function Report({ report, onBack, onRescan }) {
           {activeContent}
         </div>
       </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   )
 }
 

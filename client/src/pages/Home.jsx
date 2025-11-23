@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import Report from './Report'
+import Footer from '../components/Footer'
 
-function Home() {
+function Home({ user, initialLocation }) {
   const [images, setImages] = useState([])
   const [imagePreviews, setImagePreviews] = useState([])
   const [details, setDetails] = useState('')
-  const [location, setLocation] = useState('')
+  const [location, setLocation] = useState(initialLocation ? `${Number(initialLocation.lat).toFixed(6)}, ${Number(initialLocation.lon).toFixed(6)}` : '')
   const [isDetectingLocation, setIsDetectingLocation] = useState(false)
-  const [locationStatus, setLocationStatus] = useState('')
+  const [locationStatus, setLocationStatus] = useState(initialLocation ? `Selected address: ${initialLocation.display_name}` : '')
   const [isScanning, setIsScanning] = useState(false)
   const [analysis, setAnalysis] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
@@ -214,7 +215,8 @@ function Home() {
   }
 
   return (
-    <main className="main-content">
+    <>
+      <main className="main-content">
       <div className="hero-section">
         <p className="hero-badge">Powered by Gemini</p>
         <h1 className="hero-title">
@@ -363,7 +365,9 @@ function Home() {
           </div>
         )}
       </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   )
 }
 
