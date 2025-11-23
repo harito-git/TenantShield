@@ -101,32 +101,15 @@ function Signup({ onSignup }) {
     <div className="signup-root">
       <div className="signup-left">
         <div className="signup-logo-row">
-          <div className="signup-logo-icon" aria-hidden="true">
-<<<<<<< HEAD
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="32" height="32" rx="8" fill="#4f46e5"/>
-              <path d="M16 4L25 8V14C25 20.6274 20.4184 26 16 28C11.5816 26 7 20.6274 7 14V8L16 4Z" fill="white"/>
-=======
-<<<<<<< Updated upstream
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2l7 4v5c0 5-3.58 9.74-7 11-3.42-1.26-7-6-7-11V6l7-4z" fill="#2563eb"/>
-              <path d="M3 9.5l9-7 9 7V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z" fill="#ffffff" />
-=======
-            <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M32 4l24 9v15c0 13-10 25.5-24 33-14-7.5-24-20-24-33V13l24-9z" fill="#1E63D8"/>
-              <path d="M20.5 30.5L32 22l11.5 8.5v12.75a1.75 1.75 0 01-1.75 1.75h-20.5a1.75 1.75 0 01-1.75-1.75V30.5z" fill="#0D2C5E"/>
-              <path d="M18 31l14-10 14 10" stroke="#0D2C5E" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-              <rect x="30" y="34" width="4" height="4" rx="0.6" fill="#1E63D8"/>
-              <rect x="30" y="40" width="4" height="4" rx="0.6" fill="#1E63D8"/>
-              <rect x="36" y="34" width="4" height="4" rx="0.6" fill="#1E63D8"/>
->>>>>>> Stashed changes
->>>>>>> kurt
-            </svg>
+          <div className="signup-logo-icon" aria-hidden="true">            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2l7 4v5c0 5-3.58 9.74-7 11-3.42-1.26-7-6-7-11V6l7-4z" fill="#2563eb" />
+            <path d="M3 9.5l9-7 9 7V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z" fill="#ffffff" />
+          </svg>
           </div>
           <span className="signup-logo-text">Tenant Shield</span>
-        </div>
+        </div >
         <div className="signup-badge">SMART ADDRESS MATCH</div>
-        <h1 className="signup-title">Protecting your<br/>home starts here.</h1>
+        <h1 className="signup-title">Protecting your<br />home starts here.</h1>
         <p className="signup-desc">
           We analyze local ordinances based on your specific address to find lease violations that generic tools miss.
         </p>
@@ -135,7 +118,7 @@ function Signup({ onSignup }) {
           <span>•</span>
           <span>No credit card required</span>
         </div>
-      </div>
+      </div >
       <div className="signup-right">
         <form className="signup-form" onSubmit={handleSubmit} autoComplete="off">
           <h2 className="signup-form-title">Let's get you started</h2>
@@ -201,7 +184,7 @@ function Signup({ onSignup }) {
           </div>
         </form>
       </div>
-    </div>
+    </div >
   );
 }
 
