@@ -1,3 +1,5 @@
+import GoogleMap from '../components/GoogleMap'
+
 function Report({ report, onBack, onRescan }) {
   const {
     summary = '',
@@ -8,6 +10,7 @@ function Report({ report, onBack, onRescan }) {
     documentation = '',
     evidenceChecklist = [],
     clinicLinks = [],
+    location = '',
   } = report || {}
 
   const normalizeList = (items) => {
@@ -125,6 +128,9 @@ function Report({ report, onBack, onRescan }) {
       <section className="report-card">
         <div className="card-header">
           <div className="pill pill-cyan">Nearest Clinics</div>
+        </div>
+        <div style={{ marginBottom: '16px' }}>
+          <GoogleMap location={location} legalClinics={clinicLinks} />
         </div>
         {renderClinics(clinicLinks)}
       </section>
