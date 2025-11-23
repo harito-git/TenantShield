@@ -2,6 +2,7 @@ import './App.css'
 import Header from './components/Header'
 import Home from './pages/Home'
 import Signup from './pages/Signup'
+import LandingPage from './pages/LandingPage'
 import { useState } from 'react'
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
 
@@ -25,8 +26,12 @@ function App() {
     <div className="app">
       {location.pathname !== '/signup' && <Header />}
       <Routes>
+        <Route path="/landing" element={<LandingPage />} />
         <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
-        <Route path="/" element={signedUp ? <Home user={user} initialLocation={selectedLocation} /> : <Navigate to="/signup" replace />} />
+        <Route
+          path="/"
+          element={signedUp ? <Home user={user} initialLocation={selectedLocation} /> : <LandingPage />}
+        />
       </Routes>
     </div>
   )
