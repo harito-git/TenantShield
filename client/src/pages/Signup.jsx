@@ -101,10 +101,15 @@ function Signup({ onSignup }) {
     <div className="signup-root">
       <div className="signup-left">
         <div className="signup-logo-row">
+<<<<<<< HEAD
           <div className="signup-logo-icon" aria-hidden="true">            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2l7 4v5c0 5-3.58 9.74-7 11-3.42-1.26-7-6-7-11V6l7-4z" fill="#2563eb" />
             <path d="M3 9.5l9-7 9 7V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z" fill="#ffffff" />
           </svg>
+=======
+          <div className="signup-logo-icon" aria-hidden="true">
+            <img src="/shield-check.svg" alt="TenantShield logo" style={{ width: 48, height: 48 }} />
+>>>>>>> 1197ef2 (chore: replace shield logo with custom TenantShield SVG and update header styles)
           </div>
           <span className="signup-logo-text">Tenant Shield</span>
         </div >
