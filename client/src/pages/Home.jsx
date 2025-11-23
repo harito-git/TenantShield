@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Report from './Report'
 
 function Home() {
   const [images, setImages] = useState([])
@@ -6,6 +7,12 @@ function Home() {
   const [details, setDetails] = useState('')
   const [location, setLocation] = useState('')
   const [isScanning, setIsScanning] = useState(false)
+  const [analysis, setAnalysis] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [reportData, setReportData] = useState(null)
+  const [view, setView] = useState('form')
+
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001'
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files)
@@ -51,6 +58,20 @@ function Home() {
     setImagePreviews(imagePreviews.filter((_, i) => i !== index))
   }
 
+  const buildPayloadImages = () => {
+    return imagePreviews
+      .map((preview) => {
+        const [meta, data] = preview.split(',')
+        if (!data) return null
+        const mimeMatch = meta.match(/data:(.*);base64/)
+        return {
+          data,
+          mimeType: mimeMatch ? mimeMatch[1] : 'image/jpeg'
+        }
+      })
+      .filter(Boolean)
+  }
+
   const detectLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -72,16 +93,74 @@ function Home() {
       return
     }
 
-    setIsScanning(true)
+    const payloadImages = buildPayloadImages()
+    if (payloadImages.length === 0) {
+      alert('We could not read your images. Please re-upload and try again.')
+      return
+    }
 
-    // Simulate AI processing
-    setTimeout(() => {
+    setIsScanning(true)
+    setErrorMessage('')
+    setAnalysis('')
+    setReportData(null)
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/analyze`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          images: payloadImages,
+          details,
+          location
+        })
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        const detailText = result.details ? `: ${result.details}` : ''
+        throw new Error(result.error ? `${result.error}${detailText}` : 'Gemini could not analyze the image')
+      }
+
+      const fallbackReport = {
+        summary: result.summary || 'Gemini returned an empty response.',
+        rightsSummary: '',
+        applicableLaws: [],
+        actions: [],
+        landlordMessage: '',
+        documentation: '',
+        evidenceChecklist: [],
+        clinicLinks: [],
+      }
+
+      setReportData(result.report || fallbackReport)
+      setAnalysis(result.summary || 'Gemini returned an empty response.')
+      setView('report')
+    } catch (error) {
+      setErrorMessage(error.message || 'Something went wrong while scanning.')
+    } finally {
       setIsScanning(false)
-      alert(`Legal scan complete! Analyzed ${images.length} image(s). Your violations have been documented.`)
-    }, 2000)
+    }
   }
 
   const canRunScan = images.length > 0 && details.trim() !== '' && location.trim() !== ''
+
+  if (view === 'report' && reportData) {
+    return (
+      <Report
+        report={reportData}
+        onBack={() => setView('form')}
+        onRescan={() => {
+          setErrorMessage('')
+          setIsScanning(false)
+          setAnalysis('')
+          setView('form')
+        }}
+      />
+    )
+  }
 
   return (
     <main className="main-content">
@@ -188,12 +267,31 @@ function Home() {
           onClick={handleRunScan}
           disabled={!canRunScan || isScanning}
         >
-          {isScanning ? 'Scanning...' : 'Run Legal Scan →'}
+          {isScanning ? 'Scanning with Gemini...' : 'Run Legal Scan →'}
         </button>
         {images.length === 0 ? (
           <p className="upload-reminder">⚠️ Upload at least one photo to start</p>
         ) : (
           <p className="upload-reminder">✓ {images.length} image{images.length > 1 ? 's' : ''} uploaded</p>
+        )}
+        {(analysis || errorMessage) && (
+          <div className="analysis-container">
+            <div className="analysis-header">
+              <div className="analysis-icon">🤖</div>
+              <div>
+                <p className="analysis-title">Gemini Findings</p>
+                <p className="analysis-subtitle">Based on your photos and notes.</p>
+              </div>
+              <span className={`status-chip ${errorMessage ? 'error' : 'success'}`}>
+                {errorMessage ? 'Failed' : 'Ready'}
+              </span>
+            </div>
+            {errorMessage ? (
+              <div className="analysis-error">{errorMessage}</div>
+            ) : (
+              <p className="analysis-text">{analysis}</p>
+            )}
+          </div>
         )}
       </div>
     </main>
