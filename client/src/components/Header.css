@@ -1,0 +1,42 @@
+/* Fixed header styles used across pages */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(2,6,23,0.06);
+  z-index: 60;
+}
+
+.logo-link { text-decoration: none; color: inherit }
+
+.logo-container { display:flex; align-items:center; gap:12px }
+
+.logo-icon {
+  /* Make the logo area larger and remove the square background */
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 8px;
+  padding: 0;
+}
+
+.logo-icon-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-text h1 { margin:0; font-size:18px; font-weight:700; color:#0b63ff }
+.logo-text p { margin:0; font-size:12px; color:#6b7280 }
+
+:root { --header-height: 64px }

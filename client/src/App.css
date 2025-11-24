@@ -25,7 +25,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px 64px;
+  /* Add top padding so fixed header doesn't overlap content */
+  padding: calc(40px + var(--header-height, 64px)) 20px 64px;
   gap: 32px;
 }
 
@@ -487,7 +488,8 @@
 .landing-page {
   background: linear-gradient(180deg, #f8fbff 0%, #eef2ff 70%, #e5e9f7 100%);
   min-height: 100vh;
-  padding: 3rem 1.5rem 4rem;
+  /* Add extra top padding so content does not sit under the fixed header */
+  padding: calc(3rem + var(--header-height, 64px)) 1.5rem 4rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;

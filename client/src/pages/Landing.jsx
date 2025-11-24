@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
+import Header from '../components/Header'
 
 export default function Landing() {
   const navigate = useNavigate()
@@ -8,12 +9,12 @@ export default function Landing() {
 
   return (
     <div className="landing-page">
+        <Header />
       <header className="landing-hero centered">
-        <span className="landing-badge">TenantShield</span>
         <h1 className="landing-title">Your AI-Powered<br/>Housing Rights Advocate</h1>
         <p className="landing-subtitle">
-          Instantly scan for unsafe conditions, understand your tenant rights, and find legal support
-          <br/>—all in one place.
+          Instantly scan for unsafe conditions, understand your tenant rights, and find legal
+          <br/>support —all in one place.
         </p>
         <button className="landing-cta" onClick={goToSignup}>Get Started for Free</button>
       </header>
