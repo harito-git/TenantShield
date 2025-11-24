@@ -28,10 +28,10 @@ TenantShield is a web application powered by Google's Gemini AI that empowers te
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: [React](https://reactjs.org/) (with [Vite](https://vitejs.dev/))
-- **Styling**: Plain CSS with a responsive, mobile-first design.
-- **AI Model**: [Google Gemini](https://deepmind.google/technologies/gemini/)
-- **Backend**: A separate server (e.g., Node.js/Express or Python/Flask) is required to handle API requests and interact with the Gemini API.
+- **Frontend**: React.js, CSS3
+- **AI Model**: [Google Gemini 2.5 Flash](https://deepmind.google/technologies/gemini/)
+- **Backend**: Express.js, Node.js, 
+- **Hosting**: Vercel, Vite 
 
 ## 📦 Getting Started
 
