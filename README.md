@@ -1,9 +1,8 @@
 <h1 align="center">🛡️ TenantShield</h1>
 <h3 align="center">AI-Powered Tenant Rights & Advocacy Platform</h3>
 <p align="center">
-  <a href="#live-demo">Live Demo</a> •
-  <a href="#report-bug">Report Bug</a> •
-  <a href="#request-feature">Request Feature</a>
+  <a href="https://tenant-shield-vert.vercel.app/">Live Demo</a> •
+  <a href="https://github.com/Jason-Tan1/TenantShield/issues">Report Bug</a> 
 </p>
 
 <div align="center">
